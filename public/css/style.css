@@ -1,0 +1,57 @@
+/* header,
+footer {
+  background-color: #3197c8;
+}
+
+.card,
+header,
+footer {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.container {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+hr {
+  margin: 45px 0;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.custom-card-body {
+  text-align: center;
+}
+.custom-card-body p {
+  font-size: 2.5rem;
+}
+
+footer p {
+  color: #fff;
+  padding: 15px;
+  margin-bottom: 0;
+} */
+
+.home {
+  padding: 20px; 
+  color: white; 
+  text-shadow: 2px 1px 3px black; 
+  text-align: center; 
+  background-image: url(/bg.jpg);
+}
+
+.title {
+  padding: 10px; 
+  color: white; 
+  text-shadow: 2px 1px 3px black; 
+  text-align: center; 
+  background-image: url(/fundo.jpg);
+}
+
+.divpad {
+  padding-left: 0px;
+  padding-right: 0px;
+}

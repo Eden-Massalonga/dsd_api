@@ -1,0 +1,137 @@
+<br />
+<div class="" style="background-image: url(http://localhost:3000/fundo.jpg);">
+</div>
+<div class="">
+    <div class="title">
+        <h1>Pedidos de Prestacao de Servico</h1>
+    </div>
+
+    <br>
+    <h2 style="text-align: center;" id="mes">{{getMes}}</h2>
+    <hr>
+
+    <div class="col-lg-12 float-none divpad">
+        <h2>Servicos</h2>
+        <div class="col-lg-6 float-left">
+            <div id="piechart1"></div>
+        </div>
+        <div class="col-lg-6 float-right divpad">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Servico</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each pedidos}}
+                    <tr>
+                        <td>{{'servico.designacao'}}</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-12 float-left divpad">
+        <h2>Utentes</h2>
+        <div class="col-md-6 float-left">
+            <div id="piechart2"></div>
+
+        </div>
+
+        <div class="col-md-6 float-right divpad">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Vinculo</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each utentes}}
+                    <tr>
+                        <td>{{'vinculo.designacao'}}</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart1);
+
+
+        function drawChart() {
+
+        var descricoes = [];
+        var dados = [];
+
+        {{#each pedidos }}
+        descricoes.push(`{{'servico.designacao'}}`);
+        dados.push({{ total }});
+        {{/each}}
+            var data = google.visualization.arrayToDataTable([
+                ['Servico', 'Total'],
+                [descricoes[0], dados[0]],
+                [descricoes[1], dados[1]],
+                [descricoes[2], dados[2]]
+
+            ]);
+
+
+            /*var options = {
+                title: 'Atendimentos'
+            };*/
+            var options = {
+                height: 300,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+            chart.draw(data, options);
+        }
+        
+        
+        function drawChart1() {
+
+        var descricoes = [];
+        var dados = [];
+
+        {{#each utentes}}
+        descricoes.push(`{{'vinculo.designacao'}}`);
+        dados.push({{ total }});
+        {{/each}}
+
+        var lista = [];
+
+        lista.push(['Vinculo', 'Total'],)
+        
+        
+        var i;
+        for(i=0; i<descricoes.length; i++){
+            lista.push([descricoes[i], dados[i]],);
+        }
+
+            var data = google.visualization.arrayToDataTable(lista);
+
+
+            /*var options = {
+                title: 'reclamacoes'
+            };*/
+            var options = {
+                height: 400,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+            chart.draw(data, options);
+        }
+    </script>
